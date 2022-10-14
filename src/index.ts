@@ -6,16 +6,16 @@ const matches = fs.readFileSync('football.csv', { encoding: 'utf-8' })
 
 let manUnitedWins = 0;
 
-const matchResult = {
-    homeWin: 'H',
-    awayWin: 'A',
-    draw: 'D'
+enum MatchResult {
+    HomeWin = 'H',
+    AwayWin = 'A',
+    Draw = 'D'
 };
 
 for (let match of matches) {
     if (
-        ((match[1] === 'Man United') && (match[5] === matchResult.homeWin)) ||
-        ((match[2] === 'Man United') && (match[5] === matchResult.awayWin))
+        ((match[1] === 'Man United') && (match[5] === MatchResult.HomeWin)) ||
+        ((match[2] === 'Man United') && (match[5] === MatchResult.AwayWin))
     ) manUnitedWins += 1;
 };
 
