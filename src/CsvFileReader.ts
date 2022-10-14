@@ -7,10 +7,10 @@ type MatchData = [Date, string, string, number, number, MatchResult, string];
 export class CsvFileReader {
     data: MatchData[] = [];
 
-    constructor(public filename: string) {};
+    constructor(public fileName: string) {};
 
     read(): void {
-        this.data = fs.readFileSync(this.filename, { encoding: 'utf-8' })
+        this.data = fs.readFileSync(this.fileName, { encoding: 'utf-8' })
             .split('\n')
                 .map((row: string): string[] => row.split(','))
                     .map((row: string[]): MatchData => [

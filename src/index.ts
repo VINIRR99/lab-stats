@@ -1,18 +1,37 @@
-import { CsvFileReader } from "./CsvFileReader";
 import { MatchResult } from "./MatchResult";
 
-const reader = new CsvFileReader('football.csv');
-reader.read();
+// Using Class Inheritance
 
-console.log(reader.data[0]);
+import { MatchReader } from "./inheritance/MatchReader";
 
-let manUnitedWins = 0;
+const reader1 = new MatchReader('football.csv');
+reader1.read();
 
-for (let match of reader.data) {
+let manUnitedWins1 = 0;
+
+for (let match of reader1.data) {
     if (
         ((match[1] === 'Man United') && (match[5] === MatchResult.HomeWin)) ||
         ((match[2] === 'Man United') && (match[5] === MatchResult.AwayWin))
-    ) manUnitedWins += 1;
+    ) manUnitedWins1 += 1;
 };
 
-console.log(`Man United won ${manUnitedWins} games`);
+console.log(`Class Inheritance => Man United won ${manUnitedWins1} games`);
+
+// Using Alternative
+
+import { CsvFileReader } from "./CsvFileReader";
+
+const reader2 = new CsvFileReader('football.csv');
+reader2.read();
+
+let manUnitedWins2 = 0;
+
+for (let match of reader2.data) {
+    if (
+        ((match[1] === 'Man United') && (match[5] === MatchResult.HomeWin)) ||
+        ((match[2] === 'Man United') && (match[5] === MatchResult.AwayWin))
+    ) manUnitedWins2 += 1;
+};
+
+console.log(`Alternative => Man United won ${manUnitedWins2} games`);
