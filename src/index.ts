@@ -2,14 +2,14 @@ import { MatchResult } from "./MatchResult";
 
 // Using Class Inheritance
 
-import { MatchReader } from "./inheritance/MatchReader";
+import { MatchReader as MatchReaderInheritance } from "./inheritance/MatchReader";
 
-const reader1 = new MatchReader('football.csv');
-reader1.read();
+const matchReader1 = new MatchReaderInheritance('football.csv');
+matchReader1.read();
 
 let manUnitedWins1 = 0;
 
-for (let match of reader1.data) {
+for (let match of matchReader1.data) {
     if (
         ((match[1] === 'Man United') && (match[5] === MatchResult.HomeWin)) ||
         ((match[2] === 'Man United') && (match[5] === MatchResult.AwayWin))
@@ -18,20 +18,22 @@ for (let match of reader1.data) {
 
 console.log(`Class Inheritance => Man United won ${manUnitedWins1} games`);
 
-// Using Alternative
+// Using Composition
 
-import { CsvFileReader } from "./CsvFileReader";
+import { CsvFileReader } from "./composition/CsvFileReader";
+import { MatchReader as MatchReaderComposition } from "./composition/MatchReader";
 
-const reader2 = new CsvFileReader('football.csv');
-reader2.read();
+const csvFileReader = new CsvFileReader('football.csv');
+const matchReader2 = new MatchReaderComposition(csvFileReader);
+matchReader2.load();
 
 let manUnitedWins2 = 0;
 
-for (let match of reader2.data) {
+for (let match of matchReader2.matches) {
     if (
         ((match[1] === 'Man United') && (match[5] === MatchResult.HomeWin)) ||
         ((match[2] === 'Man United') && (match[5] === MatchResult.AwayWin))
     ) manUnitedWins2 += 1;
 };
 
-console.log(`Alternative => Man United won ${manUnitedWins2} games`);
+console.log(`Composition => Man United won ${manUnitedWins2} games`);
