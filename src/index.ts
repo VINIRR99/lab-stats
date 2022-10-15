@@ -4,6 +4,8 @@ import { Summary } from "./Summary";
 const matchReader = MatchReader.file('football.csv');
 matchReader.load();
 
+const teamSummary = Summary.teamDetails('Man United', 'wins', 'console');
+teamSummary.buildAndPrintReport(matchReader.matches);
 
-const summary = Summary.analyzerWithOutputTarget('Man United', 'wins', 'console');
-summary.buildAndPrintReport(matchReader.matches);
+const allTeams = Summary.getAllTeams('console');
+allTeams.buildAndPrintReport(matchReader.matches);

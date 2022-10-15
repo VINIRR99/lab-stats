@@ -14,7 +14,7 @@ export class HtmlReport implements OutputTarget {
     <body>
         <div>
             <h1>Analysis Output</h1>
-            <div>${report.report}</div>
+            <pre>${report.report}</pre>
         </div>
     </body>
 </html>`;
