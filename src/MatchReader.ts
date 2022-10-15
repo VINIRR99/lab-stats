@@ -9,7 +9,22 @@ interface DataReader {
 };
 
 export class MatchReader {
-    static fromCsv(fileName: string): MatchReader {return new MatchReader(new CsvFileReader(fileName))};
+    static file(fileName: string): MatchReader {
+        const array = fileName.split('.');
+        const dataType = array[array.length -1];
+
+        let dataReaderClass: DataReader | undefined;
+
+        switch(dataType) {
+            case 'csv':
+                dataReaderClass = new CsvFileReader(fileName);
+                break;
+            default:
+                throw new Error('Data Type Not Found => MatchReader');
+        };
+
+        return new MatchReader(dataReaderClass);
+    };
 
     matches: MatchData[] = [];
 

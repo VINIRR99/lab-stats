@@ -5,7 +5,7 @@ import { MatchResult } from "../MatchResult";
 export class WinsAnalysis implements Analyzer {
     constructor(public team: string) {}
 
-    run(matches: MatchData[]): string {
+    run(matches: MatchData[]): { subject: string; report: string } {
         let wins = 0;
 
         for (let match of matches) {
@@ -15,6 +15,6 @@ export class WinsAnalysis implements Analyzer {
             ) wins += 1;
         };
 
-        return `${this.team} won ${wins} games`;
+        return { subject: `${this.team} Wins`, report: `${this.team} won ${wins} games` };
     };
 };
