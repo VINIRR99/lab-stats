@@ -12,12 +12,8 @@ export interface OutputTarget {
     print(report: { subject: string; report: string }): void;
 };
 
-export type AnalyzerId = 'wins' | 'all teams';
-
-export type OutputTargetId = 'console' | 'html';
-
 export class Summary {
-    static teamDetails(team: string, analyzerId: AnalyzerId ,outputTargetId: OutputTargetId): Summary {
+    static teamDetails(team: string, analyzerId: string ,outputTargetId: string): Summary {
         let analyzerClass: Analyzer | undefined;
         switch(analyzerId) {
             case 'wins':
@@ -46,7 +42,7 @@ export class Summary {
         return new Summary(analyzerClass, outputTargetClass);
     };
 
-    static getAllTeams(outputTargetId: OutputTargetId): Summary {
+    static getAllTeams(outputTargetId: string): Summary {
         let outputTargetClass: OutputTarget | undefined;
         switch(outputTargetId) {
             case 'console':
